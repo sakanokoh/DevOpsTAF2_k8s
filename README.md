@@ -21,7 +21,7 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
 ## URL du dépôt
 
-Vous pouvez accéder au dépôt GitHub à l'adresse suivante : [https://github.com/sakanokoh/DevOpsTAF1.git](https://github.com/sakanokoh/DevOpsTAF2_k8s.git)
+Vous pouvez accéder au dépôt GitHub à l'adresse suivante : [https://github.com/sakanokoh/DevOpsTAF2_k8s.git](https://github.com/sakanokoh/DevOpsTAF2_k8s.git)
 
 ## Image Docker
 
