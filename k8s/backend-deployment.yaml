@@ -21,22 +21,22 @@ spec:
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
-              name: backend-secret
+              name: database-secret  
               key: MYSQL_USER
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: backend-secret
+              name: database-secret  
               key: MYSQL_PASSWORD
         - name: MYSQL_HOST
           valueFrom:
             configMapKeyRef:
-              name: backend-configmap
+              name: database-configmap  
               key: MYSQL_HOST
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: backend-configmap
+              name: database-configmap 
               key: MYSQL_DATABASE
         readinessProbe:
           httpGet:
@@ -60,4 +60,4 @@ spec:
       initContainers:
       - name: init-db-check
         image: busybox
-        command: ['sh', '-c', 'until nslookup mysql-service; do echo waiting for mysql; sleep 2; done']
+        command: ['sh', '-c', 'until nc -z mysql-service; do echo waiting for mysql; sleep 2; done'] 

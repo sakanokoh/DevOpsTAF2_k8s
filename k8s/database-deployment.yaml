@@ -40,8 +40,8 @@ spec:
               key: MYSQL_PASSWORD
         resources:
           requests:
-            memory: "64Mi"   
+            memory: "512Mi"
             cpu: "250m"      
           limits:
-            memory: "128Mi"  
-            cpu: "500m"      
+            memory: "1Gi"
+            cpu: "500m"       
