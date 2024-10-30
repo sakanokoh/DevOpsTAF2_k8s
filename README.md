@@ -51,7 +51,14 @@ docker build -t hamsak/backendtaf2:v2.0.0 .
 
 ### Étape 3 : Déployer sur Kubernetes
 
-Assurez-vous que votre cluster Kubernetes est en cours d'exécution (par exemple, avec Minikube). Ensuite, appliquez les manifestes Kubernetes :
+Assurez-vous que votre cluster Kubernetes est en cours d'exécution (par exemple, avec Minikube).
+Si non exécuter cette commande suivante pour créer un cluster avec 3 noeuds en utilisant `Docker` comme driver
+
+```bash
+minikube start --nodes 3 --driver=docker
+```
+
+Ensuite, appliquez les manifestes Kubernetes :
 
 ```bash
 kubectl apply -f k8s/
