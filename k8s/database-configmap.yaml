@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-configmap
+  namespace: default
+data:
+  MYSQL_DATABASE: "students_db"           
+  MYSQL_HOST: "mysql-service"              

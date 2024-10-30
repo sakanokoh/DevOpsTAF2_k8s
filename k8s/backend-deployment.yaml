@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: hamsak/backendtaf2:v2.0.0
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: MYSQL_PASSWORD
+        - name: MYSQL_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: MYSQL_HOST
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: backend-configmap
+              key: MYSQL_DATABASE
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health/live
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      initContainers:
+      - name: init-db-check
+        image: busybox
+        command: ['sh', '-c', 'until nslookup mysql-service; do echo waiting for mysql; sleep 2; done']
