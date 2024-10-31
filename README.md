@@ -78,10 +78,35 @@ kubectl get services
 Pour accéder à l'application FastAPI, utilisez l'adresse suivante dans votre navigateur :
 
 ```
-http://<adresse_ip>:8000
+http://<adresse_ip>:30001
 ```
 
 Remplacez `<adresse_ip>` par l'adresse IP de votre service Kubernetes ou l'adresse de votre Minikube.
+
+
+L'application est exposée via un service de type **NodePort**, ce qui signifie que vous pouvez y accéder à l'aide du port 30001. Assurez-vous que le service est correctement configuré en utilisant la commande suivante :
+
+```bash
+kubectl get services
+```
+
+Cela affichera les services en cours d'exécution et leurs ports associés. Recherchez le service `backend-service` pour confirmer qu'il est accessible via le port 30001.
+
+#### Accès alternatif avec kubectl port-forward
+
+Si vous rencontrez des problèmes pour accéder à l'application via le NodePort, vous pouvez utiliser `kubectl port-forward` comme alternative. Cette méthode redirige le trafic de votre machine locale vers le service Kubernetes.
+
+Exécutez la commande suivante dans votre terminal :
+
+```bash
+kubectl port-forward svc/backend-service 30001:8000
+```
+
+Vous pourrez ensuite accéder à l'application en utilisant l'adresse suivante dans votre navigateur :
+
+```
+http://localhost:30001
+```
 
 ## Configuration
 
