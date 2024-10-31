@@ -114,10 +114,6 @@ http://localhost:30001
 
 Les configurations pour l'application et la base de données sont gérées par des ConfigMaps et Secrets Kubernetes. Voici les fichiers concernés :
 
-- **backend-secret.yaml** : Contient les secrets liés à l'application backend, comme l'utilisateur et le mot de passe de la base de données.
-  
-- **backend-configmap.yaml** : Contient les configurations pour l'application backend, comme l'hôte et le nom de la base de données.
-
 - **database-secret.yaml** : Contient les secrets liés à la base de données MySQL, comme le mot de passe root et les informations d'identification de l'utilisateur.
 
 - **database-configmap.yaml** : Contient les configurations pour la base de données, comme le nom de la base de données et l'hôte.
